@@ -17,8 +17,8 @@ Parameters:
     Type: String
 
 Conditions:
-  NoOrganizationId: !Equals [ !Ref OrganizationId, none ]
-  UseDefaultPrincipal: !Equals [ !Ref Principal, account ]
+  NoOrganizationId: !Equals [!Ref OrganizationId, none]
+  UseDefaultPrincipal: !Equals [!Ref Principal, account]
 
 Resources:
   SharpHEICLayer:
@@ -30,7 +30,8 @@ Resources:
       CompatibleRuntimes:
         - nodejs14.x
         - nodejs16.x
-      LicenseInfo: 'MIT'
+        - nodejs18.x
+      LicenseInfo: "MIT"
       RetentionPolicy: Retain
     Metadata:
       BuildMethod: makefile
