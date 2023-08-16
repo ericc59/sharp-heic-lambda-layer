@@ -41,7 +41,7 @@ libvips: installLib libheif libwebp
 installLib:
 	# yum install -y yum-plugin-ovl && \
 	yum install -y \
-	    cmake \
+	    cmake3 \
 		glib2-devel \
 		expat-devel \
 		x265-devel \
