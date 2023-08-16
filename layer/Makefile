@@ -67,5 +67,4 @@ installLib:
 	# 	libtiff-devel
 
 	# Install libvips with HEIC support (+ development files and command-line tools)
-	yum install vips vips-heif vips-devel 
-	#vips-tools
+	yum install vips vips-heif vips-devel vips-tools --skip-broken
