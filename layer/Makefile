@@ -3,7 +3,7 @@ WEBP_VERSION=1.3.1
 LIBDE265_VERSION=1.0.12
 LIBHEIF_VERSION=1.16.2
 VIPS_VERSION=8.14.4
-SHARP_VERSION=0.26.2
+SHARP_VERSION=0.32.5
 
 PREFIX_PATH=/opt
 
@@ -54,17 +54,17 @@ installLib:
 	# Enable Remi's RPM repository
 	yum-config-manager --enable remi
 
-	# yum install -y \
-	# 	glib2-devel \
-	# 	expat-devel \
-	# 	lcms2-devel \
-	# 	libjpeg-devel \
-	# 	libjpeg-turbo-devel \
-	# 	libpng-devel \
-	# 	giflib-devel \
-	# 	libexif-devel \
-	# 	librsvg2-devel \
-	# 	libtiff-devel
+	yum install -y \
+		glib2-devel \
+		expat-devel \
+		lcms2-devel \
+		libjpeg-devel \
+		libjpeg-turbo-devel \
+		libpng-devel \
+		giflib-devel \
+		libexif-devel \
+		librsvg2-devel \
+		libtiff-devel
 
 	# Install libvips with HEIC support (+ development files and command-line tools)
 	yum install -y vips vips-heif vips-devel vips-tools --skip-broken
