@@ -42,11 +42,12 @@ installLib:
 	yum install -y \
 		glib2-devel \
 		expat-devel \
+		x265-devel \
+		lcms2-devel \
 		libjpeg-devel \
 		libjpeg-turbo-devel \
 		libpng-devel \
 		giflib-devel \
 		libexif-devel \
 		librsvg2-devel \
-		libtiff-devel \
-		lcms2-devel
+		libtiff-devel
