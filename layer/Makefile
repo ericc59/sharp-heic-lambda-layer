@@ -9,7 +9,7 @@ PREFIX_PATH=/opt
 
 export PKG_CONFIG_PATH=$(PREFIX_PATH)/lib/pkgconfig
 
-build-SharpHEICLayer: libvips
+build-SharpHEICLayer: installLib libwebp libde265
 	mkdir -p "$(ARTIFACTS_DIR)/nodejs"
 	mkdir -p "$(ARTIFACTS_DIR)/lib"
 
@@ -27,19 +27,33 @@ libde265:
 	curl -L https://github.com/strukturag/libde265/releases/download/v$(LIBDE265_VERSION)/libde265-$(LIBDE265_VERSION).tar.gz | tar zx
 	cd libde265-$(LIBDE265_VERSION) && ./autogen.sh && ./configure --disable-dec265 --disable-sherlock265 --prefix=$(PREFIX_PATH) && make V=0 && make install
 
-libheif: libde265
-	# libheif
-	curl -L https://github.com/strukturag/libheif/releases/download/v$(LIBHEIF_VERSION)/libheif-$(LIBHEIF_VERSION).tar.gz | tar zx
-	# cd libheif-$(LIBHEIF_VERSION) && ./autogen.sh && ./configure --prefix=$(PREFIX_PATH) && make V=0 && make install
-	cd libheif-$(LIBHEIF_VERSION) && mkdir build && cd build && cmake3 --preset=release .. && make && make install
+# libheif: libde265
+# 	# libheif
+# 	curl -L https://github.com/strukturag/libheif/releases/download/v$(LIBHEIF_VERSION)/libheif-$(LIBHEIF_VERSION).tar.gz | tar zx
+# 	# cd libheif-$(LIBHEIF_VERSION) && ./autogen.sh && ./configure --prefix=$(PREFIX_PATH) && make V=0 && make install
+# 	cd libheif-$(LIBHEIF_VERSION) && mkdir build && cd build && cmake3 --preset=release .. && make && make install
 
-libvips: installLib libheif libwebp
-	# libvips
-	curl -L https://github.com/libvips/libvips/releases/download/v$(VIPS_VERSION)/vips-$(VIPS_VERSION).tar.gz | tar zx
-	cd vips-$(VIPS_VERSION) && ./configure --prefix=$(PREFIX_PATH) && make V=0 && make install
+# libvips: installLib libheif libwebp
+# 	# libvips
+# 	curl -L https://github.com/libvips/libvips/releases/download/v$(VIPS_VERSION)/vips-$(VIPS_VERSION).tar.gz | tar zx
+# 	cd vips-$(VIPS_VERSION) && ./configure --prefix=$(PREFIX_PATH) && make V=0 && make install
 
 installLib:
-	# yum install -y yum-plugin-ovl && \
+	# Install and enable the EPEL RPM package on Amazon Linux 2
+	yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+
+	# Install the RPM Fusion configuration package
+	yum install https://download1.rpmfusion.org/free/el/rpmfusion-free-release-7.noarch.rpm
+
+	# Install the Remi repository configuration package
+	yum install http://rpms.remirepo.net/enterprise/remi-release-7.rpm
+
+	# Install the yum-utils package (for the yum-config-manager command)
+	yum install yum-utils
+
+	# Enable Remi's RPM repository
+	yum-config-manager --enable remi
+
 	yum install -y \
 	    cmake3 \
 		glib2-devel \
@@ -53,3 +67,6 @@ installLib:
 		libexif-devel \
 		librsvg2-devel \
 		libtiff-devel
+
+	# Install libvips with HEIC support (+ development files and command-line tools)
+	yum install vips vips-heif vips-devel vips-tools
