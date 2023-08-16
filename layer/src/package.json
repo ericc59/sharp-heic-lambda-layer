@@ -6,11 +6,10 @@
   "scripts": {},
   "author": "Andreas Zoellner",
   "license": "MIT",
-  "devDependencies": {},
   "engines": {
     "node": ">=16.0"
   },
   "dependencies": {
-    "sharp": "^0.30.7"
+    "sharp": "^0.32.5"
   }
 }
