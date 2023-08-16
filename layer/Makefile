@@ -9,7 +9,7 @@ PREFIX_PATH=/opt
 
 export PKG_CONFIG_PATH=$(PREFIX_PATH)/lib/pkgconfig
 
-build-SharpHEICLayer: installLib libde265
+build-SharpHEICLayer: installLib
 	mkdir -p "$(ARTIFACTS_DIR)/nodejs"
 	mkdir -p "$(ARTIFACTS_DIR)/lib"
 
@@ -22,10 +22,10 @@ build-SharpHEICLayer: installLib libde265
 # 	curl -L https://github.com/webmproject/libwebp/archive/v$(WEBP_VERSION).tar.gz | tar zx
 # 	cd libwebp-$(WEBP_VERSION) && ./autogen.sh && ./configure --enable-libwebpmux --prefix=$(PREFIX_PATH) && make V=0 && make install
 
-libde265:
-	# libde265
-	curl -L https://github.com/strukturag/libde265/releases/download/v$(LIBDE265_VERSION)/libde265-$(LIBDE265_VERSION).tar.gz | tar zx
-	cd libde265-$(LIBDE265_VERSION) && ./autogen.sh && ./configure --disable-dec265 --disable-sherlock265 --prefix=$(PREFIX_PATH) && make V=0 && make install
+# libde265:
+# 	# libde265
+# 	curl -L https://github.com/strukturag/libde265/releases/download/v$(LIBDE265_VERSION)/libde265-$(LIBDE265_VERSION).tar.gz | tar zx
+# 	cd libde265-$(LIBDE265_VERSION) && ./autogen.sh && ./configure --disable-dec265 --disable-sherlock265 --prefix=$(PREFIX_PATH) && make V=0 && make install
 
 # libheif: libde265
 # 	# libheif
@@ -54,19 +54,17 @@ installLib:
 	# Enable Remi's RPM repository
 	yum-config-manager --enable remi
 
-	yum install -y \
-	    cmake3 \
-		glib2-devel \
-		expat-devel \
-		x265-devel \
-		lcms2-devel \
-		libjpeg-devel \
-		libjpeg-turbo-devel \
-		libpng-devel \
-		giflib-devel \
-		libexif-devel \
-		librsvg2-devel \
-		libtiff-devel
+	# yum install -y \
+	# 	glib2-devel \
+	# 	expat-devel \
+	# 	lcms2-devel \
+	# 	libjpeg-devel \
+	# 	libjpeg-turbo-devel \
+	# 	libpng-devel \
+	# 	giflib-devel \
+	# 	libexif-devel \
+	# 	librsvg2-devel \
+	# 	libtiff-devel
 
 	# Install libvips with HEIC support (+ development files and command-line tools)
 	yum install vips vips-heif vips-devel vips-tools
