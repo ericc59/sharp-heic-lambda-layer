@@ -43,7 +43,7 @@ installLib:
 	# yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
 
 	# Install the RPM Fusion configuration package
-	yum install -y https://download1.rpmfusion.org/free/el/rpmfusion-free-release-9.noarch.rpm
+	# yum install -y https://download1.rpmfusion.org/free/el/rpmfusion-free-release-9.noarch.rpm
 
 	# Install the Remi repository configuration package
 	yum install -y http://rpms.remirepo.net/enterprise/remi-release-9.rpm
