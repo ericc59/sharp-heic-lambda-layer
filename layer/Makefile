@@ -3,7 +3,7 @@ WEBP_VERSION=1.3.1
 LIBDE265_VERSION=1.0.12
 LIBHEIF_VERSION=1.16.2
 VIPS_VERSION=8.14.4
-SHARP_VERSION=0.32.5
+SHARP_VERSION=0.33.2
 
 PREFIX_PATH=/opt
 
@@ -64,7 +64,9 @@ installLib:
 		giflib-devel \
 		libexif-devel \
 		librsvg2-devel \
-		libtiff-devel
+		libtiff-devel \
+		poppler-devel \
+		poppler-glib
 
 	# Install libvips with HEIC support (+ development files and command-line tools)
 	yum install -y vips vips-heif vips-devel vips-tools --skip-broken
