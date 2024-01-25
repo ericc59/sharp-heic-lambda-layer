@@ -151,4 +151,5 @@ installLib:
 		librsvg2-devel \
 		libtiff-devel \
 		lcms2-devel \
-		cmake3
+		cmake3 \ 
+		nss-tools 
