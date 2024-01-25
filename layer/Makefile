@@ -125,6 +125,7 @@ libvips: installLib libheif libwebp
 	cd vips-$(VIPS_VERSION) && ./configure --prefix=$(PREFIX_PATH) && make V=0 && make install
 
 installLib:
+	dnf update -y
 	yum install -y yum-plugin-ovl && \
 	yum install -y \
 		glib2-devel \
