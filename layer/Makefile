@@ -126,7 +126,7 @@ libvips: installLib libheif libwebp
 
 installLib:
 	dnf update -y
-	yum install -y yum-plugin-ovl && \
+	yum install -y dnf-plugin-ovl && \
 	yum install -y \
 		glib2-devel \
 		expat-devel \
