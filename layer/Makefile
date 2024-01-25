@@ -90,7 +90,7 @@ WEBP_VERSION=1.3.2
 LIBDE265_VERSION=1.0.12
 LIBHEIF_VERSION=1.12.0
 VIPS_VERSION=8.12.2
-SHARP_VERSION=0.30.7
+SHARP_VERSION=0.33.2
 
 PREFIX_PATH=/opt
 
@@ -102,7 +102,8 @@ build-SharpHEICLayer: libvips
 
 	# sharp uses several of the libs we installed or compiled. extract the full list and copy all of those into /opt/lib
 	# extract list with ldd from sharp.node, manipulate a bit with sed to only get the absolute paths, then copy
-	LD_LIBRARY_PATH=$(PREFIX_PATH)/lib npm --prefix "$(ARTIFACTS_DIR)/nodejs/" install sharp@$(SHARP_VERSION)
+	npm install -g node-addon-api node-gyp
+	LD_LIBRARY_PATH=$(PREFIX_PATH)/lib npm --prefix "$(ARTIFACTS_DIR)/nodejs/" install --build-from-source sharp@$(SHARP_VERSION)
 	LD_LIBRARY_PATH=$(PREFIX_PATH)/lib ldd $(ARTIFACTS_DIR)/nodejs/node_modules/sharp/build/Release/sharp-linux-x64.node | sed -nE "s/^[^\/\n]*(\/[^ ]+)(.*)/\1/p" | xargs cp -t $(ARTIFACTS_DIR)/lib
 
 libwebp:
@@ -119,13 +120,24 @@ libheif: libde265
 	curl -L https://github.com/strukturag/libheif/releases/download/v$(LIBHEIF_VERSION)/libheif-$(LIBHEIF_VERSION).tar.gz | tar zx
 	cd libheif-$(LIBHEIF_VERSION) && ./autogen.sh && ./configure --prefix=$(PREFIX_PATH) && make V=0 && make install
 
+libpoppler:
+	# libpoppler
+	curl -L https://poppler.freedesktop.org/poppler-24.01.0.tar.xz | tar xJ
+	cd poppler-24.01.0 && ./configure --prefix=$(PREFIX_PATH) && make V=0 && make install
+
 libvips: installLib libheif libwebp
 	# libvips
 	curl -L https://github.com/libvips/libvips/releases/download/v$(VIPS_VERSION)/vips-$(VIPS_VERSION).tar.gz | tar zx
-	cd vips-$(VIPS_VERSION) && ./configure --prefix=$(PREFIX_PATH) && make V=0 && make install
+	cd vips-$(VIPS_VERSION)
+	curl -L https://github.com/bblanchon/pdfium-binaries/releases/latest/download/pdfium-linux-x64.tgz | tar zx
+
+	./configure --prefix=$(PREFIX_PATH) && make V=0 && make install
+
+
+
 
 installLib:
-	dnf update -y
+	# dnf update -y
 	# yum install -y dnf-plugin-ovl && \
 	yum install -y \
 		glib2-devel \
@@ -137,6 +149,4 @@ installLib:
 		libexif-devel \
 		librsvg2-devel \
 		libtiff-devel \
-		lcms2-devel \
-		poppler-devel \
-		poppler-glib 
+		lcms2-devel
