@@ -124,8 +124,7 @@ libheif: libde265
 libpoppler:
 	# libpoppler
 	curl -L https://poppler.freedesktop.org/poppler-$(POPPLER_VERSION).tar.xz | tar xJ
-	ls -al
-	cd poppler-$(POPPLER_VERSION) && ./configure --prefix=$(PREFIX_PATH) && make V=0 && make install
+	cd poppler-$(POPPLER_VERSION) && mkdir build && cd build && cmake3 .. -DCMAKE_INSTALL_PREFIX=$(PREFIX_PATH) -DCMAKE_BUILD_TYPE=release
 
 libvips: installLib libpoppler libheif libwebp 
 	# libvips
