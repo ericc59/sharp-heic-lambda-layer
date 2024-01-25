@@ -15,7 +15,7 @@ build-SharpHEICLayer: installLib libvips libwebp libde265 libheif
 
 	# sharp uses several of the libs we installed or compiled. extract the full list and copy all of those into /opt/lib
 	# extract list with ldd from sharp.node, manipulate a bit with sed to only get the absolute paths, then copy
-	LD_LIBRARY_PATH=$(PREFIX_PATH)/lib npm --prefix "$(ARTIFACTS_DIR)/nodejs/" install sharp@$(SHARP_VERSION)
+	LD_LIBRARY_PATH=$(PREFIX_PATH)/lib npm --prefix "$(ARTIFACTS_DIR)/nodejs/" install sharp@$(SHARP_VERSION) --include=optional
 
 	ls -al $(ARTIFACTS_DIR)/nodejs/node_modules/sharp/
 	LD_LIBRARY_PATH=$(PREFIX_PATH)/lib ldd $(ARTIFACTS_DIR)/nodejs/node_modules/sharp/build/Release/sharp-linux-x64.node | sed -nE "s/^[^\/\n]*(\/[^ ]+)(.*)/\1/p" | xargs cp -t $(ARTIFACTS_DIR)/lib
@@ -40,7 +40,7 @@ libvips: installLib libheif libwebp
 	# curl -L https://github.com/libvips/libvips/releases/download/v$(VIPS_VERSION)/vips-$(VIPS_VERSION).tar.gz | tar zx
 	  curl -L https://github.com/libvips/libvips/releases/download/v$(VIPS_VERSION)/vips-$(VIPS_VERSION).tar.xz | tar xJ
 	# cd vips-$(VIPS_VERSION) && ./configure --prefix=$(PREFIX_PATH) && make V=0 && make install
-	cd vips-$(VIPS_VERSION) && meson setup build --prefix $(PREFIX_PATH) && cd build && meson compile && meson test && meson install
+	cd vips-$(VIPS_VERSION) && meson setup build --prefix $(PREFIX_PATH) && cd build && ninja && ninja install
 
 installLib:
 	dnf update -y
