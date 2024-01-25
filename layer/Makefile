@@ -75,7 +75,8 @@ installLib:
 		librsvg2-devel \
 		libtiff-devel \
 		poppler-devel \
-		poppler-glib
+		poppler-glib \
+		cmake3
 
 	# Install libvips with HEIC support (+ development files and command-line tools)
 	# yum install -y vips vips-heif vips-devel vips-tools --skip-broken
