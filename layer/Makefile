@@ -9,7 +9,7 @@ PREFIX_PATH=/opt
 
 export PKG_CONFIG_PATH=$(PREFIX_PATH)/lib/pkgconfig
 
-build-SharpHEICLayer: installLib
+build-SharpHEICLayer: installLib libvips libwebp libde265 libheif
 	mkdir -p "$(ARTIFACTS_DIR)/nodejs"
 	mkdir -p "$(ARTIFACTS_DIR)/lib"
 
@@ -78,4 +78,4 @@ installLib:
 		poppler-glib
 
 	# Install libvips with HEIC support (+ development files and command-line tools)
-	yum install -y vips vips-heif vips-devel vips-tools --skip-broken
+	# yum install -y vips vips-heif vips-devel vips-tools --skip-broken
