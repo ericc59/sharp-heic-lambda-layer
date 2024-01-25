@@ -125,11 +125,10 @@ libpoppler:
 	curl -L https://poppler.freedesktop.org/poppler-24.01.0.tar.xz | tar xJ
 	cd poppler-24.01.0 && ./configure --prefix=$(PREFIX_PATH) && make V=0 && make install
 
-libvips: installLib libheif libwebp
+libvips: installLib libheif libwebp libpoppler
 	# libvips
 	curl -L https://github.com/libvips/libvips/releases/download/v$(VIPS_VERSION)/vips-$(VIPS_VERSION).tar.gz | tar zx
 	cd vips-$(VIPS_VERSION)
-	curl -L https://github.com/bblanchon/pdfium-binaries/releases/latest/download/pdfium-linux-x64.tgz | tar zx
 
 	./configure --prefix=$(PREFIX_PATH) && make V=0 && make install
 
