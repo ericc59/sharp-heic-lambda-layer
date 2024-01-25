@@ -58,7 +58,7 @@ installLib:
 	yum install -y yum-utils
 
 	# Enable Remi's RPM repository
-	yum-config-manager --enable remi
+	# yum-config-manager --enable remi
 
 	yum install -y \
 		glib2-devel \
