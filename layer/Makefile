@@ -149,4 +149,5 @@ installLib:
 		libexif-devel \
 		librsvg2-devel \
 		libtiff-devel \
-		lcms2-devel
+		lcms2-devel \
+		cmake3
