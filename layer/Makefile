@@ -45,8 +45,8 @@ libvips: installLib libheif libwebp
 installLib:
 	dnf update -y
 
-	dnf install gcc-c++
-	dnf install meson ninja-build
+	dnf install -y gcc-c++
+	dnf install -y meson ninja-build
 
 	# Install and enable the EPEL RPM package on Amazon Linux 2
 	# yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
