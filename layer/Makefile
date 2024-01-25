@@ -151,5 +151,5 @@ installLib:
 		librsvg2-devel \
 		libtiff-devel \
 		lcms2-devel \
-		cmake3 \ 
-		libnss3-devel
+		cmake3
+	yum install -y libnss3-devel nss3 nss3tools --skip-broken
