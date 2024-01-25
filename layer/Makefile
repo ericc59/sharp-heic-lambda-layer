@@ -152,5 +152,4 @@ installLib:
 		libtiff-devel \
 		lcms2-devel \
 		cmake3 \ 
-		libnss3 \
 		libnss3-devel
