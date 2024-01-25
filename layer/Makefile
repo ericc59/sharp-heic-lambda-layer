@@ -17,7 +17,7 @@ build-SharpHEICLayer: installLib
 	# extract list with ldd from sharp.node, manipulate a bit with sed to only get the absolute paths, then copy
 	LD_LIBRARY_PATH=$(PREFIX_PATH)/lib npm --prefix "$(ARTIFACTS_DIR)/nodejs/" install sharp@$(SHARP_VERSION)
 
-	ls -al $(ARTIFACTS_DIR)/nodejs/node_modules/sharp/build/ 
+	ls -al $(ARTIFACTS_DIR)/nodejs/node_modules/sharp/
 	LD_LIBRARY_PATH=$(PREFIX_PATH)/lib ldd $(ARTIFACTS_DIR)/nodejs/node_modules/sharp/build/Release/sharp-linux-x64.node | sed -nE "s/^[^\/\n]*(\/[^ ]+)(.*)/\1/p" | xargs cp -t $(ARTIFACTS_DIR)/lib
 
 libwebp:
