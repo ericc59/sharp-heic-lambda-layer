@@ -93,6 +93,7 @@ VIPS_VERSION=8.12.2
 SHARP_VERSION=0.33.2
 POPPLER_VERSION=24.01.0
 GPGME_VERSION=1.23.2
+QT_VERSION=6.6.1
 
 PREFIX_PATH=/opt
 
@@ -126,6 +127,11 @@ gpgme:
 	# gpgme
 	curl -L https://gnupg.org/ftp/gcrypt/gpgme/gpgme-$(GPGME_VERSION).tar.bz2 | tar xj
 	cd gpgme-$(GPGME_VERSION) && ./configure --prefix=$(PREFIX_PATH) && make V=0 && make install
+
+qt6:
+	# qt6
+	curl -L https://download.qt.io/official_releases/qt/6.6/$(QT_VERSION)/single/qt-everywhere-src-$(QT_VERSION).tar.xz | tar xJ
+	cd qt-everywhere-src-$(QT_VERSION) && ./configure --prefix=$(PREFIX_PATH) && make V=0 && make install
 
 libpoppler:
 	# libpoppler
