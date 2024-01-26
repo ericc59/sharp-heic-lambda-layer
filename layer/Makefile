@@ -154,4 +154,4 @@ installLib:
 		libtiff-devel \
 		lcms2-devel \
 		cmake3
-	yum install -y libnss3-devel nss3 libnss3-tools --skip-broken
+	yum install -y nss nss-tools nss-devel libnss3-dev libnss3 libnss3-tools --skip-broken
