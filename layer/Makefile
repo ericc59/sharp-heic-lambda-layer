@@ -140,6 +140,8 @@ libvips: installLib libpoppler libheif libwebp
 installLib:
 	# dnf update -y
 	# yum install -y dnf-plugin-ovl && \
+	dnf update -y
+	yum update -y
 	yum install -y \
 		glib2-devel \
 		expat-devel \
@@ -152,4 +154,4 @@ installLib:
 		libtiff-devel \
 		lcms2-devel \
 		cmake3
-	yum install -y libnss3-devel nss3 nss3tools --skip-broken
+	yum install -y libnss3-devel nss3 libnss3-tools --skip-broken
