@@ -154,4 +154,4 @@ installLib:
 		libtiff-devel \
 		lcms2-devel \
 		cmake3
-	yum install -y nss nss-tools nss-devel gpgme gpgme-devel
+	yum install -y nss nss-tools nss-devel gpgme gpgme-devel cairo libjpeg libpng libtiff openjpeg qt5-qtbase qt5-qtbase-devel
