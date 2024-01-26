@@ -139,7 +139,7 @@ libpoppler:
 	git clone git://git.freedesktop.org/git/poppler/test test
 	cd poppler-$(POPPLER_VERSION) && mkdir build && cd build && cmake3 .. -DCMAKE_INSTALL_PREFIX=$(PREFIX_PATH) -DCMAKE_BUILD_TYPE=release && make && make install
 
-libvips: installLib gpgme libpoppler libheif libwebp 
+libvips: installLib gpgme qt6 libpoppler libheif libwebp 
 	# libvips
 	curl -L https://github.com/libvips/libvips/releases/download/v$(VIPS_VERSION)/vips-$(VIPS_VERSION).tar.gz | tar zx
 	cd vips-$(VIPS_VERSION)
