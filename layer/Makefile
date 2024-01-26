@@ -142,6 +142,7 @@ installLib:
 	# yum install -y dnf-plugin-ovl && \
 	dnf update -y
 	yum update -y
+	yum install -y qt6-qtbase qt6-qtbase-devel 
 	yum install -y \
 		glib2-devel \
 		expat-devel \
@@ -154,4 +155,4 @@ installLib:
 		libtiff-devel \
 		lcms2-devel \
 		cmake3
-	yum install -y nss nss-tools nss-devel gpgme gpgme-devel cairo libjpeg libpng libtiff openjpeg openjpeg-devel qt5-qtbase-devel
+	yum install -y nss nss-tools nss-devel gpgme gpgme-devel cairo libjpeg libpng libtiff
