@@ -167,5 +167,6 @@ installLib:
 		libtiff-devel \
 		lcms2-devel \
 		cmake3
-	yum install -y nss nss-tools nss-devel gpgme gpgme-devel cairo libjpeg libpng libtiff
-	yum install -y python3-distutils
+	yum install -y nss nss-tools nss-devel cairo libjpeg libpng libtiff
+	# yum install -y python3-distutils
+	pip install setuptools
