@@ -142,7 +142,7 @@ installLib:
 	# yum install -y dnf-plugin-ovl && \
 	dnf update -y
 	yum update -y
-	yum install -y qt6-qtbase qt6-qtbase-devel 
+	yum install -y qt5-qtbase qt5-qtbase-devel 
 	yum install -y \
 		glib2-devel \
 		expat-devel \
