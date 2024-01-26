@@ -170,4 +170,10 @@ installLib:
 	yum install -y nss nss-tools nss-devel gpgme gpgme-devel cairo libjpeg libpng libtiff
 	# distutils
 	yum install -y python3-devel
+	# install python 3.12
+	yum install -y https://www.python.org/ftp/python/3.12.0/Python-3.12.0.tgz
+	# install pip
+	curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+	python3 get-pip.py
+	# install distutils
 	pip install distutils
