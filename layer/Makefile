@@ -92,6 +92,7 @@ LIBHEIF_VERSION=1.12.0
 VIPS_VERSION=8.12.2
 SHARP_VERSION=0.33.2
 POPPLER_VERSION=24.01.0
+GPGME_VERSION=1.23.2
 
 PREFIX_PATH=/opt
 
@@ -121,13 +122,18 @@ libheif: libde265
 	curl -L https://github.com/strukturag/libheif/releases/download/v$(LIBHEIF_VERSION)/libheif-$(LIBHEIF_VERSION).tar.gz | tar zx
 	cd libheif-$(LIBHEIF_VERSION) && ./autogen.sh && ./configure --prefix=$(PREFIX_PATH) && make V=0 && make install
 
+gpgme:
+	# gpgme
+	curl -L https://gnupg.org/ftp/gcrypt/gpgme/gpgme-$(GPGME_VERSION).tar.bz2 | tar xj
+	cd gpgme-$(GPGME_VERSION) && ./configure --prefix=$(PREFIX_PATH) && make V=0 && make install
+
 libpoppler:
 	# libpoppler
 	curl -L https://poppler.freedesktop.org/poppler-$(POPPLER_VERSION).tar.xz | tar xJ
 	git clone git://git.freedesktop.org/git/poppler/test test
 	cd poppler-$(POPPLER_VERSION) && mkdir build && cd build && cmake3 .. -DCMAKE_INSTALL_PREFIX=$(PREFIX_PATH) -DCMAKE_BUILD_TYPE=release && make && make install
 
-libvips: installLib libpoppler libheif libwebp 
+libvips: installLib gpgme libpoppler libheif libwebp 
 	# libvips
 	curl -L https://github.com/libvips/libvips/releases/download/v$(VIPS_VERSION)/vips-$(VIPS_VERSION).tar.gz | tar zx
 	cd vips-$(VIPS_VERSION)
