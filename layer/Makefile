@@ -168,3 +168,6 @@ installLib:
 		lcms2-devel \
 		cmake3
 	yum install -y nss nss-tools nss-devel gpgme gpgme-devel cairo libjpeg libpng libtiff
+	# distutils
+	yum install -y python3-devel
+	pip install distutils
