@@ -169,4 +169,4 @@ installLib:
 		cmake3
 	yum install -y nss nss-tools nss-devel cairo libjpeg libpng libtiff
 	# yum install -y python3-distutils
-	pip install setuptools
+	# pip install setuptools
