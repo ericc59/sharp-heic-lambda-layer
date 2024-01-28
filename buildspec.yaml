@@ -9,7 +9,8 @@ env:
 phases:
   install:
     runtime-versions:
-      nodejs: 20.x
+      nodejs: 20
+      python: 3.12
     commands:
       - pip3 install aws-sam-cli --upgrade --user
   pre_build:
