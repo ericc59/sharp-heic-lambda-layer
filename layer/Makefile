@@ -154,6 +154,7 @@ installLib:
 	# yum install -y dnf-plugin-ovl && \
 	dnf update -y
 	yum update -y
+	mock -r fedora-rawhide-x86_64 install python3-devel
 	# dnf install -y qt5-qtbase qt5-qtbase-devel 
 	yum install -y \
 		glib2-devel \
