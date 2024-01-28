@@ -13,6 +13,7 @@ phases:
       python: 3.12
     commands:
       - pip3 install aws-sam-cli --upgrade --user
+      - pip3 install pygpgme
   pre_build:
     commands:
       - NODE_ENV=development npm ci

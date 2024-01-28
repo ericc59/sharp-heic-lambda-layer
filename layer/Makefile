@@ -171,4 +171,4 @@ installLib:
 	yum install -y nss nss-tools nss-devel cairo libjpeg libpng libtiff
 	# yum install -y python3-distutils
 	# pip install setuptools
-	pip install pip install pygpgme
+	# pip install pip install pygpgme
