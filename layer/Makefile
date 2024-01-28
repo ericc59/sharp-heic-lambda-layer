@@ -167,7 +167,8 @@ installLib:
 		libtiff-devel \
 		lcms2-devel \
 		cmake3 \
-		libassuan
+		libassuan \
+		libassuan-config
 	yum install -y nss nss-tools nss-devel cairo libjpeg libpng libtiff
 	# yum install -y python3-distutils
 	# pip install setuptools
