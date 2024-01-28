@@ -123,10 +123,10 @@ libheif: libde265
 	curl -L https://github.com/strukturag/libheif/releases/download/v$(LIBHEIF_VERSION)/libheif-$(LIBHEIF_VERSION).tar.gz | tar zx
 	cd libheif-$(LIBHEIF_VERSION) && ./autogen.sh && ./configure --prefix=$(PREFIX_PATH) && make V=0 && make install
 
-# gpgme:
-# 	# gpgme
-# 	curl -L https://gnupg.org/ftp/gcrypt/gpgme/gpgme-$(GPGME_VERSION).tar.bz2 | tar xj
-# 	cd gpgme-$(GPGME_VERSION) && ./configure --prefix=$(PREFIX_PATH) && make V=0 && make install
+gpgme:
+	# gpgme
+	curl -L https://gnupg.org/ftp/gcrypt/gpgme/gpgme-$(GPGME_VERSION).tar.bz2 | tar xj
+	cd gpgme-$(GPGME_VERSION) && ./configure --prefix=$(PREFIX_PATH) && make V=0 && make install
 
 qt6:
 	# qt6
@@ -139,7 +139,7 @@ libpoppler:
 	git clone git://git.freedesktop.org/git/poppler/test test
 	cd poppler-$(POPPLER_VERSION) && mkdir build && cd build && cmake3 .. -DCMAKE_INSTALL_PREFIX=$(PREFIX_PATH) -DCMAKE_BUILD_TYPE=release && make && make install
 
-libvips: installLib qt6 libpoppler libheif libwebp 
+libvips: installLib gpgme qt6 libpoppler libheif libwebp 
 	# libvips
 	curl -L https://github.com/libvips/libvips/releases/download/v$(VIPS_VERSION)/vips-$(VIPS_VERSION).tar.gz | tar zx
 	cd vips-$(VIPS_VERSION)
@@ -154,7 +154,6 @@ installLib:
 	# yum install -y dnf-plugin-ovl && \
 	dnf update -y
 	yum update -y
-	mock -r fedora-rawhide-x86_64 install python3-devel
 	# dnf install -y qt5-qtbase qt5-qtbase-devel 
 	yum install -y \
 		glib2-devel \
