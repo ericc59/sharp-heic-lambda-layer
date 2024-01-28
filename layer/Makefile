@@ -172,7 +172,8 @@ installLib:
 		librsvg2-devel \
 		libtiff-devel \
 		lcms2-devel \
-		cmake3  
+		cmake3 \
+		gnupg
 	yum install -y nss nss-tools nss-devel cairo libjpeg libpng libtiff
 	# yum install -y python3-distutils
 	# pip install setuptools
