@@ -94,6 +94,7 @@ SHARP_VERSION=0.33.2
 POPPLER_VERSION=24.01.0
 GPGME_VERSION=1.23.2
 QT_VERSION=6.6.1
+LIBASSUAN_VERSION=2.5.6
 
 PREFIX_PATH=/opt
 
@@ -123,6 +124,11 @@ libheif: libde265
 	curl -L https://github.com/strukturag/libheif/releases/download/v$(LIBHEIF_VERSION)/libheif-$(LIBHEIF_VERSION).tar.gz | tar zx
 	cd libheif-$(LIBHEIF_VERSION) && ./autogen.sh && ./configure --prefix=$(PREFIX_PATH) && make V=0 && make install
 
+libasssuan:
+	# libasssuan
+	curl -L https://gnupg.org/ftp/gcrypt/libassuan/libassuan-$(LIBASSUAN_VERSION).tar.bz2 | tar xj
+	cd libassuan-$(LIBASSUAN_VERSION) && ./configure --prefix=$(PREFIX_PATH) && make V=0 && make install
+
 gpgme:
 	# gpgme
 	curl -L https://gnupg.org/ftp/gcrypt/gpgme/gpgme-$(GPGME_VERSION).tar.bz2 | tar xj
@@ -139,7 +145,7 @@ libpoppler:
 	git clone git://git.freedesktop.org/git/poppler/test test
 	cd poppler-$(POPPLER_VERSION) && mkdir build && cd build && cmake3 .. -DCMAKE_INSTALL_PREFIX=$(PREFIX_PATH) -DCMAKE_BUILD_TYPE=release && make && make install
 
-libvips: installLib gpgme qt6 libpoppler libheif libwebp 
+libvips: installLib libassuan gpgme qt6 libpoppler libheif libwebp 
 	# libvips
 	curl -L https://github.com/libvips/libvips/releases/download/v$(VIPS_VERSION)/vips-$(VIPS_VERSION).tar.gz | tar zx
 	cd vips-$(VIPS_VERSION)
@@ -166,9 +172,7 @@ installLib:
 		librsvg2-devel \
 		libtiff-devel \
 		lcms2-devel \
-		cmake3 \
-		libassuan \
-		libassuan-config
+		cmake3  
 	yum install -y nss nss-tools nss-devel cairo libjpeg libpng libtiff
 	# yum install -y python3-distutils
 	# pip install setuptools
