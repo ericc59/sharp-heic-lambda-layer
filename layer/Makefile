@@ -124,8 +124,8 @@ libheif: libde265
 	curl -L https://github.com/strukturag/libheif/releases/download/v$(LIBHEIF_VERSION)/libheif-$(LIBHEIF_VERSION).tar.gz | tar zx
 	cd libheif-$(LIBHEIF_VERSION) && ./autogen.sh && ./configure --prefix=$(PREFIX_PATH) && make V=0 && make install
 
-libasssuan:
-	# libasssuan
+libassuan:
+	# libassuan
 	curl -L https://gnupg.org/ftp/gcrypt/libassuan/libassuan-$(LIBASSUAN_VERSION).tar.bz2 | tar xj
 	cd libassuan-$(LIBASSUAN_VERSION) && ./configure --prefix=$(PREFIX_PATH) && make V=0 && make install
 
